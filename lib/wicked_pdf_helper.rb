@@ -43,9 +43,9 @@ module WickedPdfHelper
 
     def asset_pathname(source)
       if Rails.configuration.assets.compile == false
-        File.join(Rails.public_path, asset_path(source))
+        File.join(Rails.public_path, source)
       else
-        Rails.application.assets.find_asset(source).pathname
+        Rails.application.config.assets.find_asset(source).pathname
       end
     end
 
@@ -53,7 +53,7 @@ module WickedPdfHelper
       if Rails.configuration.assets.compile == false
         IO.read(asset_pathname(source))
       else
-        Rails.application.assets.find_asset(source).to_s
+        Rails.application.config.assets.find_asset(source).to_s
       end
     end
   end
